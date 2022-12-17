@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import static obfuscator.RenameVariables.randomString;
 
 public class AddUnreachableCode {
+    //ƒобавление недостижимого кода
     public static String addUnreachCode(String code) {
         String result = code;
         Pattern identifierPattern = Pattern.compile("public class(.*?)\\{");
@@ -21,6 +22,7 @@ public class AddUnreachableCode {
         return result;
     }
 
+    //ѕолучение рандомного недостижимого кода
     public static String getRandomCode() {
         int number = 1 + (int) (Math.random() * ((3 - 1) + 1));
         return switch (number) {
