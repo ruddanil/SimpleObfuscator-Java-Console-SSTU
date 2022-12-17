@@ -32,8 +32,9 @@ public class AddRandomComments {
                     }
                 }
             }
-            if (i < str.length()-1) {
-                if(str.charAt(i+1) == '"' && isTextFlag) isTextFlag = false;
+
+            if (i < str.length() - 1) {
+                if (str.charAt(i + 1) == '"' && isTextFlag) isTextFlag = false;
             }
         }
         return str;
@@ -65,6 +66,7 @@ public class AddRandomComments {
         } else {
             result = new StringBuilder("All rights reserved");
         }
+        
         return result.toString();
     }
 }

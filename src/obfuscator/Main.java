@@ -19,6 +19,7 @@ public class Main {
                 System.out.println("The file was not found");
             }
         }
+
         // Добавляем недостижимый и мертвый код
         String newStr = AddUnreachableCode.addUnreachCode(stringBuffer.toString());
         // Очищаем код от комментариев, табуляций, переносов строк и лишних пробелов
@@ -30,6 +31,7 @@ public class Main {
 
         writeInFile(newStr);
     }
+
     // Запись кода в файл
     private static void writeInFile(String str) throws IOException {
         FileWriter writer = new FileWriter("C:/Users/rudda/IdeaProjects/SSTU-OOP/src/ru/rud/geometry/Point.java", false);
