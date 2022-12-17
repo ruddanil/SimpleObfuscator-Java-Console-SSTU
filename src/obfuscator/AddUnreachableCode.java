@@ -23,15 +23,11 @@ public class AddUnreachableCode {
 
     public static String getRandomCode() {
         int number = 1 + (int) (Math.random() * ((3 - 1) + 1));
-        switch (number) {
-            case 1:
-                return "double " + randomString(5) + " (int a){double b = a*2*Math.random();if (b < 10){b += 10;}return b;}";
-            case 2:
-                return "double " + randomString(5) + " (){double a = 101;double b = a*2/14*3.14*Math.random();if (b < a){b += 10;}return b;}";
-            case 3:
-                return "String " + randomString(5) + " (){String firstName = \"Daniil\";String secondName = \"Rud\";while(firstName != \"\"){System.out.println(firstName+secondName);}return secondName;}";
-            default:
-                return "";
-        }
+        return switch (number) {
+            case 1 -> "double " + randomString(5) + " (int a){double b = a*2*Math.random();if (b < 10){b += 10;}return b;}";
+            case 2 -> "double " + randomString(5) + " (){double a = 101;double b = a*2/14*3.14*Math.random();if (b < a){b += 10;}return b;}";
+            case 3 -> "String " + randomString(5) + " (){String firstName = \"Daniil\";String secondName = \"Rud\";while(firstName != \"\"){System.out.println(firstName+secondName);}return secondName;}";
+            default -> "";
+        };
     }
 }
