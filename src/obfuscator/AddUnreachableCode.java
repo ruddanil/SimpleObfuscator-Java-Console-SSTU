@@ -33,4 +33,8 @@ public class AddUnreachableCode {
             default -> "";
         };
     }
+
+    public static String notUsefulMethod() {
+        return "";
+    }
 }
