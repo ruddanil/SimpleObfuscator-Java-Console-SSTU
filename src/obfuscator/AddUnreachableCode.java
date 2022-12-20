@@ -23,7 +23,6 @@ public class AddUnreachableCode {
     }
 
     //Получение рандомного недостижимого кода
-    //Еще один бесполезный комментарий
     public static String getRandomCode() {
         int number = 1 + (int) (Math.random() * ((3 - 1) + 1));
         return switch (number) {
