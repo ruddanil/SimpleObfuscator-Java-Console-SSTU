@@ -4,8 +4,6 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Main {
-
-
     public static void main(String[] args) {
         // Reading the source code
         Scanner scanner = new Scanner(System.in);
