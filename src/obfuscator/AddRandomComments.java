@@ -26,7 +26,7 @@ public class AddRandomComments {
                         str = sb.toString();
                     }
                     if (add_info % 7 == 0 && getRandomBoolean()) {
-                        sb = new StringBuffer(str.toString());
+                        sb = new StringBuffer(str);
                         sb.insert(i, " //" + AddRandomComments.addRandomText(15) + " \n");
                         str = sb.toString();
                     }
@@ -45,7 +45,7 @@ public class AddRandomComments {
     }
 
     private static String addRandomText(int length) {
-        ArrayList<String> alphabet = new ArrayList<String>();
+        ArrayList<String> alphabet = new ArrayList<>();
         StringBuilder result = new StringBuilder();
 
         for (char c = 'A'; c <= 'z'; c++) {
@@ -66,7 +66,7 @@ public class AddRandomComments {
         } else {
             result = new StringBuilder("All rights reserved");
         }
-        
+
         return result.toString();
     }
 }

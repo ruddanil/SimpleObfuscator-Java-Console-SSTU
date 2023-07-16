@@ -1,41 +1,60 @@
 package obfuscator;
+
 import java.io.*;
+import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        // Считывание исходного кода
-        StringBuffer stringBuffer = new StringBuffer();
-        boolean correctInput = false;
-        while (!correctInput) {
-            File file = new File("C:/Users/rudda/IdeaProjects/SSTU-OOP/src/ru/rud/geometry/Point.java");
-            try (FileReader fr = new FileReader(file)) {
+
+    public static void main(String[] args) {
+        // Reading the source code
+        Scanner scanner = new Scanner(System.in);
+        String filePath = "";
+
+        while (filePath.isEmpty()) {
+            System.out.println("Enter the path to the file to open:");
+            filePath = scanner.nextLine();
+
+            try (FileReader fr = new FileReader(filePath)) {
+                StringBuilder stringBuffer = new StringBuilder();
                 int textChar;
+
                 while ((textChar = fr.read()) != -1) {
                     stringBuffer.append((char) textChar);
-                    correctInput = true;
                 }
+
+                // Adding unreachable and dead code
+                String newStr = AddUnreachableCode.addUnreachCode(stringBuffer.toString());
+
+                // Clearing the code from comments, tabs, line breaks and extra spaces
+                newStr = CodeCleaning.cleanCode(newStr);
+
+                // Changing the names of variables and classes
+                newStr = RenameVariables.IdentifierNameReplacing(newStr);
+
+                // Inserting random comments of two types and line breaks
+                newStr = AddRandomComments.createComments(newStr);
+
+                writeInFile(newStr);
             } catch (IOException e) {
-                System.out.println("The file was not found");
+                System.out.println("File not found");
+                filePath = "";
             }
         }
 
-        // Добавляем недостижимый и мертвый код
-        String newStr = AddUnreachableCode.addUnreachCode(stringBuffer.toString());
-        // Очищаем код от комментариев, табуляций, переносов строк и лишних пробелов
-        newStr = CodeCleaning.cleanCode(newStr);
-        // Изменяем имена переменных и классов
-        newStr = RenameVariables.IdentifierNameReplacing(newStr);
-        // Вставляем рандомные комментарии двух типов и переносы строки
-        newStr = AddRandomComments.createComments(newStr);
-
-        writeInFile(newStr);
+        scanner.close();
     }
 
-    // Запись кода в файл
+    // Writing code to a file
     private static void writeInFile(String str) throws IOException {
-        FileWriter writer = new FileWriter("C:/Users/rudda/IdeaProjects/SSTU-OOP/src/ru/rud/geometry/Point.java", false);
+        String desktopPath = System.getProperty("user.home") + "/Desktop";
+        String filePath = desktopPath + "/output.txt";
+
+        FileWriter writer = new FileWriter(filePath, false);
         writer.append(str);
         writer.flush();
+        writer.close();
+
+        System.out.println("The obfuscated code has been successfully saved to the desktop.");
     }
 }

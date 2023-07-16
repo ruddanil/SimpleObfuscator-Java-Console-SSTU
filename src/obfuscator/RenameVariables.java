@@ -20,7 +20,7 @@ public class RenameVariables {
         for (int i = 0; i < typesOfIdentifier.length; i++) {
             Pattern identifierPattern = Pattern.compile(typesOfIdentifier[i] + "\\s*(\\w{2,})(\\=|;)");
             Matcher identifierMatcher = identifierPattern.matcher(result);
-            //Поиск и замена имён переменных
+            // Search and replace variable names
             while (identifierMatcher.find()) {
                 String pattern = identifierMatcher.group();
                 String oldName = pattern.substring(LengthsOfTypesNamesOfIdentifiers[i], pattern.length() - 1);
@@ -48,9 +48,10 @@ public class RenameVariables {
         return result;
     }
 
-    //Генератор имён переменных
+    // Variable Name Generator
     static final char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toCharArray();
     static SecureRandom rnd = new SecureRandom();
+
     private static void nameGenerator() {
         int size = 0;
         for (int i = 0; i < alphabet.length + 1; i++) {
@@ -61,7 +62,7 @@ public class RenameVariables {
         }
     }
 
-    //Генератор рандомной строки
+    // Random String Generator
     public static String randomString(int len) {
         StringBuilder sb = new StringBuilder(len);
         for (int i = 0; i < len; i++)
